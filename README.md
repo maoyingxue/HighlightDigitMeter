@@ -1,1 +1,1 @@
-# HighlightDigitMeter
+# 高亮数值表读数
