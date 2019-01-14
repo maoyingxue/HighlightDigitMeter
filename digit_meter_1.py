@@ -27,10 +27,12 @@ def digit_meter_1(image,info):
                 row_points.append(total)
                 total = 0
     row_points = np.array(row_points, dtype="int").reshape((-1, 3))
+    #print("row_points:",row_points)
     args = np.argsort(-row_points[:, 2])
+    args=args[:info["nRows"]]
+    args=args[np.argsort(args)]
     row_points = row_points[args]
-    row_points = row_points[:info["nRows"]]
-    print(row_points)
+    #print("row_points:",row_points)
     blobs = []
     for i, row_point in enumerate(row_points):
         thresh1 = thresh[row_point[0]:row_point[1]]
