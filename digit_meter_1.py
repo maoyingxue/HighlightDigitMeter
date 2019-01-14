@@ -98,20 +98,23 @@ def digit_meter_1(image,info):
                 nDecimals=info["row"+str(i+1)]["col"+str(j+1)]["nDecimals"]
                 t_b=blob[index[j]:index[j+1]]
                # print(t_b)
-                val=0.00
+                tmp=""
                 for k in range(t_b.shape[0]-1,-1,-1):
                     #print(k)
-                    val=val+t_b[t_b.shape[0]-k-1][2]*math.pow(10,k-nDecimals)
-                #print(val)
+                    tmp=tmp+str(blob[blob.shape[0]-k-1][2])
+                    if k==nDecimals:
+                        tmp=tmp+"."
+                val=float(tmp)
                 val = round(val, nDecimals)
                 vals.append(val)
         else:
-            val=0.00
             nDecimals = info["row" + str(i + 1)]["col1"]["nDecimals"]
+            tmp=""
             for j in range(blob.shape[0]-1,-1,-1):
-                w=blob[blob.shape[0]-j-1][2]*math.pow(10,j-nDecimals)
-                val=val+w
-                #print(w,val)
+                tmp=tmp+str(blob[blob.shape[0]-j-1][2])
+                if j==nDecimals:
+                    tmp=tmp+"."
+            val=float(tmp)
             val=round(val,nDecimals)
             vals.append(val)
         values.append(vals)
